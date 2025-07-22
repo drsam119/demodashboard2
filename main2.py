@@ -3,24 +3,24 @@ import numpy as np
 import plotly.express as px
 import streamlit as st
 
-# Load dataset
+
 df = pd.read_csv("Assignment4.csv")
 
 st.title("Products Dashboard")
 st.header("Select at least one choice")
 
-# Dropdown for category selection
+
 categories = df['Category'].unique()
 selected_categories = st.multiselect("Select Category", options=categories, default=categories)
 
-# Filter data and show charts only if at least one category is selected
+
 if selected_categories:
     filtered_df = df[df['Category'].isin(selected_categories)]
 
     st.subheader("Filtered Data")
     st.write(filtered_df)
 
-    # Bar Chart
+   
     bar_fig = px.bar(
         filtered_df,
         x='Subcategory',
@@ -30,7 +30,7 @@ if selected_categories:
     )
     st.plotly_chart(bar_fig, use_container_width=True)
 
-    # Pie Chart
+    
     pie_fig = px.pie(
         filtered_df,
         names='Subcategory',
@@ -39,7 +39,7 @@ if selected_categories:
     )
     st.plotly_chart(pie_fig, use_container_width=True)
 
-    # Sunburst Chart
+   
     sun_fig = px.sunburst(
         filtered_df,
         path=['Category', 'Subcategory'],
