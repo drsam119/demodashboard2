@@ -4,10 +4,7 @@ import plotly.express as px
 import streamlit as st
 
 # Load dataset
-uploaded_file = st.file_uploader("Assignment4.csv", type=["csv"])
-
-if uploaded_file is not None:
-    df = pd.read_csv(uploaded_file)
+df = pd.read_csv("Assignment4.csv")
 
 st.title("Products Dashboard")
 st.header("Select at least one choice")
